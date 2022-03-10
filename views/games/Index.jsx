@@ -17,11 +17,12 @@ class Index extends React.Component {
                             // console.log('Game review 0' + game.reviews[0])
                             return(
                                 <div>
-                                    <h2>{game.name}</h2>
                                     <a href={`/games/${game._id}`}> <img src={game.img} alt={game.name} /></a>
-                                    <p>Price: ${game.price}</p>
-                                    <p>Quantity: {game.qty} </p>
-                                    <p>{game.reviews.length} Reviews</p>
+                                    <h2>{game.name}</h2>
+                                    <div>
+                                    <p>${game.price}</p>
+                                    {game.qty > 0 ? <p class="stock">In Stock</p> : <p class="stock">Out of Stock</p> }
+                                    </div>
                                 </div>
                             )
                         })

@@ -7,6 +7,9 @@ class Show extends React.Component {
         // console.log(game)
         return(
             <Default title="GameHub">
+                <nav>
+                    <a href={`/games`}>Home</a>
+                </nav>
                 <div>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
@@ -17,7 +20,7 @@ class Show extends React.Component {
                     <div>
                         <p>Buy {game.name}</p>
                         <p>${game.price}</p>
-                        <p>{game.qty}</p>
+                        <button>Add to Cart</button>
                     </div>
                     <div>
                         <h3>Customer Reviews</h3>
@@ -30,6 +33,7 @@ class Show extends React.Component {
                                 })
                             }
                         </ul>
+                        <a href={`/games/${game._id}/new`}><button>Write a review</button></a>
                     </div>
                 </div>
             </Default>
