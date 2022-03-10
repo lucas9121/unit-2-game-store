@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
-app.use('/products', gameController)
+app.use('/games', gameController)
 
 app.get('/', (req, res) => {
     res.send('Server is working')

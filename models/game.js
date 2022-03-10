@@ -6,9 +6,9 @@ const gameSchema = new Schema({
     name: String,
     description: String,
     img: String,
-    Price: Number,
+    price: Number,
     qty: Number,
-    reviews: String
+    reviews: Array
 })
 
 const Game = model('Game', gameSchema)
