@@ -34,7 +34,15 @@ router.get('/', (req, res) => {
 })
 
 // New
-
+router.get('/:id/new', (req, res) => {
+    Game.findById(req.params.id)
+        .then((game) => {
+            res.render('games/New', {game})
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
 
 // Delete
 
@@ -43,7 +51,25 @@ router.get('/', (req, res) => {
 
 
 // Create
-
+router.post('/:id', (req,res) => {
+    Game.findById(req.params.id)
+        .then((foundGame) => {
+            console.log(`Found Game is ${foundGame}`)
+            console.log(`old reviews are ${foundGame.reviews}`)
+            console.log(`New review is ${req.body.reviews}`)
+            // spread operator - copies the array
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+            foundGame.reviews = [...foundGame.reviews, req.body.reviews]
+            //Saves the update
+            foundGame.save()
+        })
+        .then(() => {
+            res.redirect(`/games`)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
 
 // Edit
 

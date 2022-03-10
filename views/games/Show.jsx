@@ -28,7 +28,7 @@ class Show extends React.Component {
                             {
                                 game.reviews.map((review) => {
                                     return(
-                                    <li>{review}</li>
+                                    <li key={game._id} >{review}</li>
                                     )
                                 })
                             }

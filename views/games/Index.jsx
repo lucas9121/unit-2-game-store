@@ -21,7 +21,7 @@ class Index extends React.Component {
                                     <h2>{game.name}</h2>
                                     <div>
                                     <p>${game.price}</p>
-                                    {game.qty > 0 ? <p class="stock">In Stock</p> : <p class="stock">Out of Stock</p> }
+                                    {game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
                                     </div>
                                 </div>
                             )
