@@ -4,9 +4,13 @@ const Default = require('../Default.jsx')
 class New extends React.Component {
     render(){
         const {game} = this.props
-        console.log(game)
         return(
-            <Default>
+            <Default title="GameHub">
+                <nav>
+                    <a href="/games">Home</a> <br/>
+                    <a href={`/games/${game._id}`}>Back to {game.name}</a>
+                </nav>
+                <h2>{game.name} Review form</h2>
                 <form action={`/games/${game._id}`} method="post">
                     <fieldset>
                         <label htmlFor="reviews">
