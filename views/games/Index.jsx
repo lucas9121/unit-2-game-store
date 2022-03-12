@@ -4,13 +4,15 @@ const Default = require('../Default.jsx')
 class Index extends React.Component {
     render(){
         const props = this.props
-        const {games} = props
-        console.log('New Log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        const {games, username} = props
+        // console.log('New Log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        // console.log(username)
         // console.log(`Games are: ${games}`)
         return(
             <Default title='GameHub'>
                 <nav>
                 <a href="/user/logout"><button>Logout</button></a>
+                <p>{username}</p>
                 </nav>
                 <div>
                     {

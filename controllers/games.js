@@ -32,9 +32,11 @@ router.use((req, res, next) => {
 
 // Index
 router.get('/', (req, res) => {
+    username = req.session.username
+    console.log(username)
     Game.find({})
         .then((games) => {
-            res.render('games/Index', {games})
+            res.render('games/Index', {games, username})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -60,11 +62,13 @@ router.get('/:id/new', (req, res) => {
 
 // Create
 router.post('/:id', (req,res) => {
+    username = req.session.username
     Game.findById(req.params.id)
         .then((foundGame) => {
-            console.log(`Found Game is ${foundGame}`)
-            console.log(`old reviews are ${foundGame.reviews}`)
-            console.log(`New review is ${req.body.reviews}`)
+            // console.log(`Found Game is ${foundGame}`)
+            // console.log(`old reviews are ${foundGame.reviews}`)
+            // console.log(`New review is ${req.body.reviews}`)
+            // console.log(`Username is ${req.body.username}`)
             // spread operator - copies the array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
             foundGame.reviews = [...foundGame.reviews, req.body.reviews]
@@ -72,7 +76,7 @@ router.post('/:id', (req,res) => {
             foundGame.save()
         })
         .then(() => {
-            res.redirect(`/games`)
+            res.render('games/Show', {game, username})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -85,9 +89,10 @@ router.post('/:id', (req,res) => {
 // Show
 router.get('/:id', (req,res) => {
     const {id} = req.params
+    username = req.session.username
     Game.findById(id)
         .then((game) =>{
-            res.render('games/Show', {game})
+            res.render('games/Show', {game, username})
         })
         .catch((error) => {
             res.status(400).json(error)

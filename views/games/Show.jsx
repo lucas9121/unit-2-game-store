@@ -3,8 +3,9 @@ const Default = require('../Default.jsx')
 
 class Show extends React.Component {
     render(){
-        const game = this.props.game
+        const {game, username} = this.props
         // console.log(game)
+        // console.log(username)
         return(
             <Default title="GameHub">
                 <nav>
@@ -28,7 +29,10 @@ class Show extends React.Component {
                             {
                                 game.reviews.map((review) => {
                                     return(
-                                    <li key={game._id} >{review}</li>
+                                    <div>
+                                        <li key={game._id} >{review}</li>
+                                        <li>By: {game.username}</li>
+                                    </div>
                                     )
                                 })
                             }

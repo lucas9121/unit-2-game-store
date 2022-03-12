@@ -8,7 +8,11 @@ const gameSchema = new Schema({
     img: String,
     price: Number,
     qty: Number,
-    reviews: Array
+    reviews: {
+        type: Array,
+        username: String,
+    },
+    username: String,
 })
 
 const Game = model('Game', gameSchema)
