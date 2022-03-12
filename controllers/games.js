@@ -22,6 +22,14 @@ router.get('/seed', (req,res) => {
     })
 })
 
+router.use((req, res, next) => {
+    if(req.session.loggedIn) {
+        next()
+    } else {
+        res.redirect('/user/login')
+    }
+})
+
 // Index
 router.get('/', (req, res) => {
     Game.find({})

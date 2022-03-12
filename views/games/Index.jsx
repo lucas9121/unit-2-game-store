@@ -9,6 +9,9 @@ class Index extends React.Component {
         // console.log(`Games are: ${games}`)
         return(
             <Default title='GameHub'>
+                <nav>
+                <a href="/user/logout"><button>Logout</button></a>
+                </nav>
                 <div>
                     {
                         games.map((game) => {
