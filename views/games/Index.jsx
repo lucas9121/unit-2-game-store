@@ -13,6 +13,7 @@ class Index extends React.Component {
                 <nav>
                 <a href="/user/logout"><button>Logout</button></a>
                 <p>{username}</p>
+                <a href={`user/${username}`}>My account</a>
                 </nav>
                 <div>
                     {

@@ -4,6 +4,7 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const Game = require('../models/game')
 
 
 /////////////////////////////////////////
@@ -56,10 +57,18 @@ router.post('/login', async (req, res) => {
                 const result = await bcrypt.compare(password, user.password)
                 if(result) {
                     // store some properties in the session object
+                    console.log('User log in!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                    console.log(user.username)
+                    console.log(user.email)
+                    console.log(user.accountType)
                     req.session.username = username
                     req.session.loggedIn = true
-                    // redirect to games page if sucessful
-                    res.redirect('/games')
+                    if(user.accountType === 'gamer'){
+                        // redirect to games page if sucessful
+                        res.redirect('/games')
+                    } else if(user.accountType === 'developer') {
+                        res.send('dev page')
+                    }
                 } else {
                     //error if password doesn't match
                     res.json({error: 'Password doesn\'t match'})
@@ -80,6 +89,23 @@ router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         res.redirect('/')
     })
+})
+
+router.get('/', (req, res) => {
+    User.find({})
+        .then((user) => {
+            res.render('user/Info', {user})
+        })
+})
+
+router.get('/:username', (req, res) => {
+    User.findOne({username: req.params.username})
+        .then((user) => {
+            res.render('user/Info', {user})
+        })
+        .catch((error) => {
+            res.json(error)
+        })
 })
 
 
