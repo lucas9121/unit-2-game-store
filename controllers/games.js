@@ -44,14 +44,11 @@ router.get('/', (req, res) => {
             .catch((error) => {
                 res.status(400).json(error)
             })
-    // } else {
-    //     res.send('dev Page')
-    // }
 })
 
 
 
-// New
+// New Review
 router.get('/:id/new', (req, res) => {
     Game.findById(req.params.id)
         .then((game) => {
@@ -69,7 +66,7 @@ router.get('/:id/new', (req, res) => {
 
 
 
-// Create
+// Create Review
 router.post('/:id', (req,res) => {
     username = req.session.username
     Game.findById(req.params.id)
@@ -97,7 +94,6 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
-            console.log(game)
             res.render('games/Show', {game, username})
         })
         .catch((error) => {
@@ -105,25 +101,29 @@ router.get('/:id', (req,res) => {
         })
 })
 
-router.put('/cart/:id', (req, res) => {
-    // username = req.session.username
-    // console.log(req.session.cart)
-    // const cart = Cart(req.session.cart ? req.session.cart : {})
-    // console.log(cart)
+// Add to Cart
+router.post('/cart/:id', (req, res) => {
     Game.findById(req.params.id)
         .then((game) => {
             User.findOne({username: req.session.username})
                 .then((user) => {
-                    game.qty = 1
-                    user.cart.push(game)
+                    console.log(`game is ${game}`)
+                    console.log(`user is ${user}`)
+                    let oldGame = user.cart.find(obj => obj === game)
+                    if(!oldGame){
+                        game.qty = 1
+                        user.cart = [...user.cart, game]
+                        user.save()
+                    } else {
+                        oldGame.qty ++
+                        oldGame.price += oldGame.price * oldGame.qty
+                    }
+                    console.log(user.cart)
+                    res.redirect('/games')
                 })
                 .catch((error) => {
                     res.status(400).json(error)
                 })
-            // Cart(game)
-            // req.session.cart = cart
-            // console.log(req.session.cart)
-            res.redirect('/games')
         })
         .catch((error) => {
             res.status(400).json(error)

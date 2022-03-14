@@ -2,7 +2,7 @@ const { render } = require('express/lib/response')
 const React = require('react')
 const Default = require('./Default')
 
-class Index extends React.Component {
+class Login extends React.Component {
     render() {
         return(
             <Default>
@@ -15,4 +15,4 @@ class Index extends React.Component {
     }
 }
 
-module.exports = Index
+module.exports = Login

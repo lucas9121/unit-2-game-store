@@ -21,8 +21,11 @@ class Show extends React.Component {
                     <div>
                         <p>Buy {game.name}</p>
                         <p>${game.price}</p>
-                        <a href={`/games/cart/${game._id}`}><button>Add to Cart</button></a>
-                        <a href={`/games/cart/${game._id}`}><button>Cart</button></a>
+                        <a href={`/games/cart/${game._id}`}>
+                        <form action={`/games/cart/${game._id}`} method="POST">
+                            <input type="submit" value='Add to Cart' />
+                        </form>
+                        </a>
                     </div>
                     <div>
                         <h3>Customer Reviews</h3>

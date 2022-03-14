@@ -91,9 +91,12 @@ router.get('/logout', (req, res) => {
     })
 })
 
+// Cart
 router.get('/cart/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
+            console.log(user)
+            console.log(`User Cart is ${user.cart}`)
             res.render('user/Cart', {user})
         })
         .catch((error) => {
@@ -101,10 +104,10 @@ router.get('/cart/:username', (req, res) => {
         })
 })
 
+// My Account
 router.get('/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
-            console.log(user.cart)
             res.render('user/Info', {user})
         })
         .catch((error) => {

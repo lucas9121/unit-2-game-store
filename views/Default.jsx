@@ -12,7 +12,11 @@ class Default extends React.Component {
                 </head>
                 <body>
                     <header>
-                        <h1>{this.props.title}</h1>
+                        <h1>GameHub</h1>
+                        <div className="login">
+                            <a href="/user/signup"><button>Signup</button></a>
+                            <a href="/user/login"><button>Login</button></a>
+                        </div>
                     </header>
                     <main>
                         {this.props.children}
