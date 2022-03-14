@@ -35,7 +35,6 @@ router.post('/signup', async (req, res) => {
             res.redirect('/user/login')
         })
         .catch((error) => {
-            console.log(error)
             res.status(400).json(error)
         })
 })
@@ -57,17 +56,13 @@ router.post('/login', async (req, res) => {
                 const result = await bcrypt.compare(password, user.password)
                 if(result) {
                     // store some properties in the session object
-                    console.log('User log in!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                    console.log(user.username)
-                    console.log(user.email)
-                    console.log(user.accountType)
                     req.session.username = username
                     req.session.loggedIn = true
                     if(user.accountType === 'gamer'){
                         // redirect to games page if sucessful
                         res.redirect('/games')
                     } else if(user.accountType === 'developer') {
-                        res.send('dev page')
+                        res.send('/dev')
                     }
                 } else {
                     //error if password doesn't match
@@ -79,7 +74,6 @@ router.post('/login', async (req, res) => {
             }
         })
         .catch((error) => {
-            console.log(error)
             res.status(400).json(error)
         })
 })
@@ -91,13 +85,31 @@ router.get('/logout', (req, res) => {
     })
 })
 
+
 // Cart
 router.get('/cart/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
-            console.log(user)
-            console.log(`User Cart is ${user.cart}`)
             res.render('user/Cart', {user})
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+// Delete Cart Game
+router.post('/cart/:username/:gameName', (req, res) => {
+    User.findOne({username: req.params.username})
+        .then((user) => {
+            let game = user.cart.find(obj => obj.name === req.params.gameName)
+            let gameIndex = user.cart.indexOf(game)
+            user.cart.splice(gameIndex, 1)
+            user.save()
+            if(user.cart.length > 0){
+                res.redirect(`back`)
+            } else {
+                res.redirect('/games')
+            }
         })
         .catch((error) => {
             res.status(400).json(error)

@@ -107,18 +107,34 @@ router.post('/cart/:id', (req, res) => {
         .then((game) => {
             User.findOne({username: req.session.username})
                 .then((user) => {
-                    console.log(`game is ${game}`)
-                    console.log(`user is ${user}`)
-                    let oldGame = user.cart.find(obj => obj === game)
+                    console.log('Game Cart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                    // console.log(`game is ${game}`)
+                    // console.log(`user is ${user}`)
+                    let oldGame = user.cart.find(obj => obj.name === game.name)
+                    // console.log(`old game!!!!!!!!!!!!!!!!!!!!!!!!!!`)
+                    // console.log(oldGame)
+                    // console.log(`Currrent game!!!!!!!!!!!!!!!!!`)
+                    // console.log(user.cart.oldGame)
+                    // console.log(user.cart)
+                    // console.log(oldGame._id)
+                    // console.log(game._id)
                     if(!oldGame){
-                        game.qty = 1
-                        user.cart = [...user.cart, game]
+                        oldGame = game
+                        oldGame.qty = 1
+                        user.cart = [...user.cart, oldGame]
+                        // console.log(game)
                         user.save()
                     } else {
+                        let gameIndex = user.cart.indexOf(oldGame)
                         oldGame.qty ++
-                        oldGame.price += oldGame.price * oldGame.qty
+                        console.log(game.price)
+                        console.log(oldGame.qty)
+                        console.log(oldGame.price)
+                        oldGame.price = game.price * oldGame.qty
+                        user.cart.splice(gameIndex, 1, oldGame)
+                        user.save()
                     }
-                    console.log(user.cart)
+                    // console.log(user.cart)
                     res.redirect('/games')
                 })
                 .catch((error) => {

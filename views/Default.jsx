@@ -16,6 +16,7 @@ class Default extends React.Component {
                         <div className="login">
                             <a href="/user/signup"><button>Signup</button></a>
                             <a href="/user/login"><button>Login</button></a>
+                            <a href="/games">Home</a>
                         </div>
                     </header>
                     <main>

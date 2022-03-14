@@ -4,8 +4,6 @@ const Default = require('../Default')
 class Cart extends React.Component {
     render() {
         const {user} = this.props
-        // console.log(user)
-        // console.log(user.cart)
         const cart = user.cart
         return(
             <Default>
@@ -19,9 +17,13 @@ class Cart extends React.Component {
                                     <h2>{game.name}</h2>
                                     <div>
                                         <p>${game.price} </p>
-                                        {game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
+                                        <p>Qty: {game.qty}</p>{game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
                                         <a href="#"><button>Buy</button></a>
-                                        <a href="#"><button>Remove</button></a>
+                                        <a href={`/user/cart/${user.username}/${game.name}`}>
+                                            <form action={`/user/cart/${user.username}/${game.name}`} method="POST">
+                                                <input type="submit" value='Remove' />
+                                            </form>
+                                        </a>
                                     </div>
                                 </div>
                             )
