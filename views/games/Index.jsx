@@ -7,34 +7,13 @@ class Index extends React.Component {
         const {games, username} = props
         return(
             <Default account="gamer" username={username}>
-                {/* <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
-                    <a className='navbar-brand text-primary' href="/games"><h1>GAMEHUB</h1></a>
-                    <div className="login navbar-collapse">
-                        <ul className="nav navbar-nav">
-                            <li className="nav-item"> 
-                                {
-                                !username ? <a href="/">Sign in</a> : 
-                                <a className='account nav-link text-light' href={`/user/${username}`}>My account</a>
-                                }
-                            </li>
-                            <li className="nav-item">
-                                <a className='nav-link text-light' href={`/user/cart/${username}`}>
-                                    Cart <span className="badge badge-info small">5</span> 
-                                    </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className='logout nav-link text-light' href="/user/logout">Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav> */}
                 <div className='main-div'>
                     {
                         games.map((game) => {
                             return(
-                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div bborder order-danger'} >
+                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'} >
                                     <a href={`/games/${game._id}`}> <img src={game.img} alt={game.name} /></a>
-                                    <div className='banner-div'>
+                                    <div className='banner-div bg-secondary'>
                                         <h2>{game.name}</h2>
                                         <div>
                                             <p>${game.price}</p>

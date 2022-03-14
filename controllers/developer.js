@@ -3,6 +3,7 @@
 ////////////////////////////////////////
 const express = require('express')
 const Game = require('../models/game')
+const User = require('../models/user')
 
 
 /////////////////////////////////////////
@@ -18,7 +19,10 @@ const router =  express.Router()
 // Index
 router.get('/', (req, res) => {
     username = req.session.username
-    Game.find({dev: req.session.username})
+    User.findOne({username})
+        .then((user) => {
+        })
+    Game.find({dev: username})
         .then((games) => {
             res.render('developer/Index', {games, username})
         })
@@ -51,8 +55,7 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     Game.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then((game) => {
-        game.dev = req.session.username
-        res.redirect(`/dev/${req.params}`)
+        res.redirect(`/dev/${req.params.id}`)
     })
     .catch((error) => {
         res.status(400).json(error)
@@ -64,6 +67,10 @@ router.put('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Game.create(req.body)
         .then((game) => {
+            game.dev = req.session.username
+            game.qty = 10
+            game.save()
+            console.log(game)
             res.render('developer/Show', {game})
         })
         .catch((error) => {
@@ -94,6 +101,19 @@ router.get('/:id', (req, res) => {
         })
         .catch((error) => {
             res.status(400).json(error)
+        })
+})
+
+
+// My Account
+router.get('/account/:username', (req, res) => {
+    User.findOne({username: req.session.username})
+        .then((user) => {
+            console.log(user)
+            res.render('developer/Info', {user})
+        })
+        .catch((error) => {
+            res.status(400).res.json(error)
         })
 })
 

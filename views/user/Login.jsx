@@ -4,7 +4,7 @@ const Default = require('../Default')
 class Login extends React.Component {
     render() {
         return(
-            <Default title="Login">
+            <Default>
                 <div>
                     <form action="/user/login" method="post">
                     <fieldset>

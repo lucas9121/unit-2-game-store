@@ -6,21 +6,18 @@ class Index extends React.Component {
         const {games, username} = this.props
         return(
             <Default account="developer" username={username}>
-                <a href="/dev"><h1>GameHub</h1></a>
-                <div className="login">
-                    <a className='account' href={`/dev/${username}`}><button>My account</button></a>
-                    <a className='logout' href="/user/logout"><button>Logout</button></a>
-                </div>
-                <div>
+                <div className='main-div'>
                     {
                         games.map((game) => {
                             return(
-                                <div>
+                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'}>
                                     <a href={`/dev/${game._id}`}> <img src={game.img} alt={game.name} /></a>
-                                    <h2>{game.name}</h2>
-                                    <div>
-                                    <p>${game.price}</p>
-                                    {game.qty > 0 ? <p className="stock">In Stock({game.qty})</p> : <p className="stock">Out of Stock</p> }
+                                    <div className='banner-div bg-secondary'>
+                                        <h2>{game.name}</h2>
+                                        <div>
+                                            <p>${game.price}</p>
+                                            {game.qty > 0 ? <p className="text-success stock">In Stock({game.qty})</p> : <p className="text-danger stock">Out of Stock</p> }
+                                        </div>
                                     </div>
                                 </div>
                             )

@@ -7,11 +7,6 @@ class Cart extends React.Component {
         const cart = user.cart
         return(
             <Default account="gamer" username={user.username}>
-                <a href={user.accountType == 'gamer' ? "/games" : "/dev"}><h1>GameHub</h1></a>
-                <div className="login">
-                    <a className='account' href={`/user/${user.username}`}><button>My account</button></a>
-                    <a className='logout' href="/user/logout"><button>Logout</button></a>
-                </div>
                 <div>
                     {
                         cart.length === 0 ? <h2>Cart is Empty</h2> :

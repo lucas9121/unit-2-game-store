@@ -1,14 +1,7 @@
 const React = require('react')
-const express = require("express")
-const User = require('../models/user')
 
 class Default extends React.Component {
     render() {
-        let user2 = User.find({})
-        const {user, game} = this.props
-        console.log(user2)
-        console.log(user)
-        console.log(game)
         return(
             <html lang='en'>
                 <head>
@@ -30,7 +23,7 @@ class Default extends React.Component {
                                 <ul className='nav navbar-nav'>
                                     <li className="nav-item">
                                         {
-                                        this.props.account === 'developer' ? <a className="account nav-link text-light" href={`/dev/${this.props.username}`}>My account</a> :
+                                        this.props.account === 'developer' ? <a className="account nav-link text-light" href={`/dev/account/${this.props.username}`}>My account</a> :
                                         this.props.account === 'gamer' ? <a className='account nav-link text-light' href={`/user/${this.props.username}`}>My account</a> :
                                         <a className='nav-link text-light' href="/">Sign in</a>
                                         }
@@ -38,14 +31,14 @@ class Default extends React.Component {
                                     </li>
                                     <li className="nav-item">
                                         {
-                                            this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${username}`}> Cart <span className="badge badge-info small">5</span> </a>:
-                                            this.props.account === 'developer' ? <a className='nav-link text-light' href='#'> Cart <span className="badge badge-info small">5</span> </a>:
-                                            <a className='nav-link text-light' href={`/user/login`}> Cart <span className="badge badge-info small">5</span> </a>
+                                            this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${this.props.username}`}> Cart <span className="badge badge-info small">5</span> </a>:
+                                            this.props.account === 'developer' ? <a className='nav-link text-light' href='/dev/new'> New Game </a>:
+                                            <a className='nav-link text-light' href={`/user/login`}> Cart </a>
                                         }
                                     </li>
                                     <li className="nav-item">
                                         {
-                                        this.props.account === 'developer' ?  <a className='nav-link text-light' href="/dev/logout">Logout</a>:
+                                        this.props.account === 'developer' ?  <a className='nav-link text-light' href="/user/logout">Logout</a>:
                                         this.props.account === 'gamer' ? <a className='logout nav-link text-light' href="/user/logout">Logout</a> :
                                         <a href=""></a>
                                         }

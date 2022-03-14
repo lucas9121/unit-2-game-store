@@ -4,29 +4,19 @@ const Default = require('../Default.jsx')
 class Show extends React.Component {
     render(){
         const {game, username} = this.props
-        console.log(game)
-        // console.log(username)
         return(
             <Default account="gamer" username={username}>
-                <nav>
-                <a href="/games"><h1>GameHub</h1></a>
-                        <div className="login">
-                            {
-                            !username ? <a href="/">Sign in</a> : 
-                            <a className='account' href={`/user/${username}`}><button>My account</button></a>
-                            }
-                            <a className='logout' href="/user/logout"><button>Logout</button></a>
-                        </div>
-                <a href={`/user/cart/${username}`}><button>Cart</button></a>
-                </nav>
-                <div>
+                <div className='show-div'>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
-                    <div>
+                    <div className='about-div form-group'>
                         <h3>About this Game:</h3>
-                        <p>{game.description}</p>
+                        <hr />
+                        <div className='bg-dark text-light border border-light rounded'>
+                            <p className=''>{game.description}</p>
+                        </div>
                     </div>
-                    <div>
+                    <div className='purchase-div form-group jumbotron-sm'>
                         <p>Buy {game.name}</p>
                         <p>${game.price}</p>
                         <a href={`/games/cart/${game._id}`}>
@@ -35,8 +25,9 @@ class Show extends React.Component {
                         </form>
                         </a>
                     </div>
-                    <div>
+                    <div className='review-div form-group'>
                         <h3>Customer Reviews</h3>
+                        <hr />
                         <ul>
                             {
                                 game.reviews.map((review) => {
