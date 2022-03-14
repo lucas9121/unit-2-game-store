@@ -17,7 +17,12 @@ const router =  express.Router()
 /////////////////////////////////////////
 
 // Index
-
+router.get('/', (req, res) => {
+    Game.find({})
+        .then((games) => {
+            res.render('developer/Index', {games})
+        })
+})
 
 
 // New

@@ -4,12 +4,11 @@ const Default = require('../Default.jsx')
 class Show extends React.Component {
     render(){
         const {game, username} = this.props
-        // console.log(game)
+        console.log(game)
         // console.log(username)
         return(
             <Default title="GameHub">
                 <nav>
-                    <a href={`/games`}>Home</a>
                 </nav>
                 <div>
                     <h2>{game.name}</h2>

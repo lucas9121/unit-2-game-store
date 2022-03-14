@@ -97,6 +97,29 @@ router.get('/cart/:username', (req, res) => {
         })
 })
 
+// Buy Cart Game
+router.post('/cart/:username/:gameName', (req, res) => {
+    User.findOne({username: req.params.username})
+        .then((user) => {
+            let cartGame = user.cart.find(obj => obj.name === req.params.gameName)
+            let gameIndex = user.cart.indexOf(cartGame)
+            Game.findOne({name: cartGame.name})
+                .then((foundGame) => {
+                    if(foundGame.qty > 0 && foundGame.qty >= cartGame.qty){
+                        foundGame.qty -= cartGame.qty
+                        user.cart.splice(gameIndex, 1)
+                        user.save()
+                        foundGame.save()
+                        console.log(foundGame)
+                        res.redirect('/games')
+                    }
+                })
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
 // Delete Cart Game
 router.post('/cart/:username/:gameName', (req, res) => {
     User.findOne({username: req.params.username})
