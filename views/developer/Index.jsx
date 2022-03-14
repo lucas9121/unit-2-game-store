@@ -5,7 +5,7 @@ class Index extends React.Component {
     render() {
         const {games, username} = this.props
         return(
-            <Default>
+            <Default account="developer" username={username}>
                 <a href="/dev"><h1>GameHub</h1></a>
                 <div className="login">
                     <a className='account' href={`/dev/${username}`}><button>My account</button></a>

@@ -7,7 +7,7 @@ class Show extends React.Component {
         console.log(game)
         // console.log(username)
         return(
-            <Default>
+            <Default account="gamer" username={username}>
                 <nav>
                 <a href="/games"><h1>GameHub</h1></a>
                         <div className="login">

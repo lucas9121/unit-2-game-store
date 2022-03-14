@@ -6,7 +6,7 @@ class Info extends React.Component {
     render() {
         const {user} = this.props
         return(
-            <Default>
+            <Default account="gamer" username={user.username}>
                 <a href={user.accountType == 'gamer' ? "/games" : "/dev"}><h1>GameHub</h1></a>
                 <div className="login">
                     <a className='account' href={`/user/${user.username}`}><button>My account</button></a>

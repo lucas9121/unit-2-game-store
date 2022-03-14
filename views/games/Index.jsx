@@ -5,12 +5,9 @@ class Index extends React.Component {
     render(){
         const props = this.props
         const {games, username} = props
-        // console.log('New Log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        // console.log(username)
-        // console.log(`Games are: ${games}`)
         return(
-            <Default>
-                <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
+            <Default account="gamer" username={username}>
+                {/* <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
                     <a className='navbar-brand text-primary' href="/games"><h1>GAMEHUB</h1></a>
                     <div className="login navbar-collapse">
                         <ul className="nav navbar-nav">
@@ -21,29 +18,28 @@ class Index extends React.Component {
                                 }
                             </li>
                             <li className="nav-item">
-                                <a className='logout nav-link text-light' href="/user/logout">Logout</a>
-                            </li>
-                            <li className="nav-item">
                                 <a className='nav-link text-light' href={`/user/cart/${username}`}>
                                     Cart <span className="badge badge-info small">5</span> 
                                     </a>
                             </li>
+                            <li className="nav-item">
+                                <a className='logout nav-link text-light' href="/user/logout">Logout</a>
+                            </li>
                         </ul>
                     </div>
-                </nav>
-                <div className='main-div bg-light'>
+                </nav> */}
+                <div className='main-div'>
                     {
                         games.map((game) => {
-                            // console.log('Individual Games!!!!!!!!!')
-                            // console.log(game)
-                            // console.log('Game review 0' + game.reviews[0])
                             return(
-                                <div className='sub-div'>
+                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div bborder order-danger'} >
                                     <a href={`/games/${game._id}`}> <img src={game.img} alt={game.name} /></a>
                                     <div className='banner-div'>
-                                    <h2>{game.name}</h2>
-                                    <p>${game.price}</p>
-                                    {game.qty > 0 ? <p className="text-success">In Stock</p> : <p className="text-danger">Out of Stock</p> }
+                                        <h2>{game.name}</h2>
+                                        <div>
+                                            <p>${game.price}</p>
+                                            {game.qty > 0 ? <p className="text-success stock">In Stock</p> : <p className="text-danger stock">Out of Stock</p> }
+                                        </div>
                                     </div>
                                 </div>
                             )

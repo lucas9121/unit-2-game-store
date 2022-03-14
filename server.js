@@ -45,7 +45,7 @@ app.use('/games', gameController)
 app.use('/user', userRouter)
 
 app.get('/', (req, res) => {
-    res.render('Login')
+    res.render('Home')
 })
 
 

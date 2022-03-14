@@ -81,7 +81,7 @@ router.post('/login', async (req, res) => {
 router.get('/logout', (req, res) => {
     // destroy session and redirect to main page
     req.session.destroy((err) => {
-        res.redirect('/')
+        res.redirect('/games')
     })
 })
 
@@ -96,6 +96,7 @@ router.get('/default', (req,res) => {
 router.get('/cart/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
+            !user ? res.redirect('/') :
             res.render('user/Cart', {user})
         })
         .catch((error) => {

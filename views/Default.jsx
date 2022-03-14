@@ -24,18 +24,36 @@ class Default extends React.Component {
                 </head>
                 <body>
                     <header>
-                        {/* <a href={user.accountType == 'gamer' ? "/games" : "/dev"}><h1>GameHub</h1></a>
-                        <div className="login">
-                            {
-                            !user ? <a href="/">Sign in</a> : 
-                            user.accountType == 'developer' ? <a className="account" href={`/dev/${user.username}`}><button>My account</button></a> && <a href="/dev/logout"><button>Logout</button></a>:
-                            <a className='account' href={`/user/${user.username}`}><button>My account</button></a> || <a className='logout' href="/user/logout"><button>Logout</button></a>
-                            }
-                            {
-                            user.accountType == 'developer' ?  <a href="/dev/logout"><button>Logout</button></a>:
-                            <a className='logout' href="/user/logout"><button>Logout</button></a>
-                            }
-                        </div> */}
+                        <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
+                            <a className='navbar-brand text-primary' href={this.props.account === 'gamer' ? "/games" : "/dev"}><h1>GAMEHUB</h1></a>
+                            <div className="login navbar-collapse">
+                                <ul className='nav navbar-nav'>
+                                    <li className="nav-item">
+                                        {
+                                        this.props.account === 'developer' ? <a className="account nav-link text-light" href={`/dev/${this.props.username}`}>My account</a> :
+                                        this.props.account === 'gamer' ? <a className='account nav-link text-light' href={`/user/${this.props.username}`}>My account</a> :
+                                        <a className='nav-link text-light' href="/">Sign in</a>
+                                        }
+
+                                    </li>
+                                    <li className="nav-item">
+                                        {
+                                            this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${username}`}> Cart <span className="badge badge-info small">5</span> </a>:
+                                            this.props.account === 'developer' ? <a className='nav-link text-light' href='#'> Cart <span className="badge badge-info small">5</span> </a>:
+                                            <a className='nav-link text-light' href={`/user/login`}> Cart <span className="badge badge-info small">5</span> </a>
+                                        }
+                                    </li>
+                                    <li className="nav-item">
+                                        {
+                                        this.props.account === 'developer' ?  <a className='nav-link text-light' href="/dev/logout">Logout</a>:
+                                        this.props.account === 'gamer' ? <a className='logout nav-link text-light' href="/user/logout">Logout</a> :
+                                        <a href=""></a>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
                     </header>
                     <main>
                         {this.props.children}

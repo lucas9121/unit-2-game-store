@@ -5,7 +5,7 @@ class New extends React.Component {
     render(){
         const {game, username} = this.props
         return(
-            <Default>
+            <Default account="gamer" username={username}>
                 <nav>
                 <a href="/games"><h1>GameHub</h1></a>
                         <div className="login">
