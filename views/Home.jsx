@@ -2,7 +2,7 @@ const { render } = require('express/lib/response')
 const React = require('react')
 const Default = require('./Default')
 
-class Login extends React.Component {
+class Home extends React.Component {
     render() {
         return(
             <Default>
@@ -15,4 +15,4 @@ class Login extends React.Component {
     }
 }
 
-module.exports = Login
+module.exports = Home

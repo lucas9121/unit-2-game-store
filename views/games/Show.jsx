@@ -9,6 +9,15 @@ class Show extends React.Component {
         return(
             <Default title="GameHub">
                 <nav>
+                <a href="/games"><h1>GameHub</h1></a>
+                        <div className="login">
+                            {
+                            !username ? <a href="/">Sign in</a> : 
+                            <a className='account' href={`/user/${username}`}><button>My account</button></a>
+                            }
+                            <a className='logout' href="/user/logout"><button>Logout</button></a>
+                        </div>
+                <a href={`/user/cart/${username}`}><button>Cart</button></a>
                 </nav>
                 <div>
                     <h2>{game.name}</h2>

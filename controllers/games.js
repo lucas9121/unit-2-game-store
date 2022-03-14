@@ -35,10 +35,6 @@ router.use((req, res, next) => {
 // Index
 router.get('/', (req, res) => {
     username = req.session.username
-    // console.log('Controller Index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    // if(req.body.gamer){
-        console.log(username)
-        console.log(username.toString())
         Game.find({})
             .then((games) => {
                 res.render('games/Index', {games, username})
@@ -49,12 +45,12 @@ router.get('/', (req, res) => {
 })
 
 
-
 // New Review
 router.get('/:id/new', (req, res) => {
+    username = req.session.username
     Game.findById(req.params.id)
         .then((game) => {
-            res.render('games/New', {game})
+            res.render('games/New', {game, username})
         })
         .catch((error) => {
             res.status(400).json(error)

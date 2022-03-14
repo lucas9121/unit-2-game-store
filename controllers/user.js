@@ -85,6 +85,12 @@ router.get('/logout', (req, res) => {
     })
 })
 
+router.get('/default', (req,res) => {
+    User.find({})
+        .then((user) => {
+            res.render('Default', {user})
+        })
+})
 
 // Cart
 router.get('/cart/:username', (req, res) => {
