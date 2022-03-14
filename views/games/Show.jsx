@@ -21,7 +21,8 @@ class Show extends React.Component {
                     <div>
                         <p>Buy {game.name}</p>
                         <p>${game.price}</p>
-                        <button>Add to Cart</button>
+                        <a href={`/games/cart/${game._id}`}><button>Add to Cart</button></a>
+                        <a href={`/games/cart/${game._id}`}><button>Cart</button></a>
                     </div>
                     <div>
                         <h3>Customer Reviews</h3>

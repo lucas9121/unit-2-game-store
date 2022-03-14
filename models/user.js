@@ -16,7 +16,8 @@ const userSchema = new Schema({
     password: {type: String, required: true},
     name: String,
     email: String,
-    accountType: String, 
+    accountType: String,
+    cart: Array, 
 
 })
 

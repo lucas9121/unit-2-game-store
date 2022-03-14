@@ -1,5 +1,7 @@
 const express = require("express")
 const Game = require('../models/game')
+const Cart = require('../models/cart')
+const User = require('../models/user')
 
 const router = express.Router()
 
@@ -47,6 +49,8 @@ router.get('/', (req, res) => {
     // }
 })
 
+
+
 // New
 router.get('/:id/new', (req, res) => {
     Game.findById(req.params.id)
@@ -62,6 +66,7 @@ router.get('/:id/new', (req, res) => {
 
 
 // Update
+
 
 
 // Create
@@ -92,6 +97,7 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
+            console.log(game)
             res.render('games/Show', {game, username})
         })
         .catch((error) => {
@@ -99,7 +105,32 @@ router.get('/:id', (req,res) => {
         })
 })
 
-    
+router.put('/cart/:id', (req, res) => {
+    // username = req.session.username
+    // console.log(req.session.cart)
+    // const cart = Cart(req.session.cart ? req.session.cart : {})
+    // console.log(cart)
+    Game.findById(req.params.id)
+        .then((game) => {
+            User.findOne({username: req.session.username})
+                .then((user) => {
+                    game.qty = 1
+                    user.cart.push(game)
+                })
+                .catch((error) => {
+                    res.status(400).json(error)
+                })
+            // Cart(game)
+            // req.session.cart = cart
+            // console.log(req.session.cart)
+            res.redirect('/games')
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+
 
 
 module.exports = router
