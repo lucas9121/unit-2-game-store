@@ -6,6 +6,7 @@ class Index extends React.Component {
         return(
             <Default>
                 <p>This is the indx page for the developer account</p>
+                
             </Default>
         )
     }

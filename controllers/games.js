@@ -37,6 +37,8 @@ router.get('/', (req, res) => {
     username = req.session.username
     // console.log('Controller Index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     // if(req.body.gamer){
+        console.log(username)
+        console.log(username.toString())
         Game.find({})
             .then((games) => {
                 res.render('games/Index', {games, username})
