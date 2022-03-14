@@ -1,0 +1,35 @@
+
+.login{
+    display: flex;
+    justify-content: end !important;
+}
+
+.main-div{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 0.5em 0.2em;
+    padding: 10px 0;
+    border: solid;
+}
+
+.sub-div{
+    border: dotted
+}
+
+.sub-div > a > img{
+    border: solid green;
+    width: 100%;
+}
+
+.banner-div{
+    display: flex;
+    flex: 1;
+    border: solid;
+}
+
+.banner-div > h2 {
+    border: solid blue;
+}
+.banner-div > p {
+    border: dotted;
+}

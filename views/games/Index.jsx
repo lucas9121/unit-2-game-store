@@ -10,30 +10,40 @@ class Index extends React.Component {
         // console.log(`Games are: ${games}`)
         return(
             <Default>
-                <nav>
-                <a href="/games"><h1>GameHub</h1></a>
-                        <div className="login">
-                            {
-                            !username ? <a href="/">Sign in</a> : 
-                            <a className='account' href={`/user/${username}`}><button>My account</button></a>
-                            }
-                            <a className='logout' href="/user/logout"><button>Logout</button></a>
-                        </div>
-                <a href={`/user/cart/${username}`}><button>Cart</button></a>
+                <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
+                    <a className='navbar-brand text-primary' href="/games"><h1>GAMEHUB</h1></a>
+                    <div className="login navbar-collapse">
+                        <ul className="nav navbar-nav">
+                            <li className="nav-item"> 
+                                {
+                                !username ? <a href="/">Sign in</a> : 
+                                <a className='account nav-link text-light' href={`/user/${username}`}>My account</a>
+                                }
+                            </li>
+                            <li className="nav-item">
+                                <a className='logout nav-link text-light' href="/user/logout">Logout</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className='nav-link text-light' href={`/user/cart/${username}`}>
+                                    Cart <span className="badge badge-info small">5</span> 
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
-                <div>
+                <div className='main-div bg-light'>
                     {
                         games.map((game) => {
                             // console.log('Individual Games!!!!!!!!!')
                             // console.log(game)
                             // console.log('Game review 0' + game.reviews[0])
                             return(
-                                <div>
+                                <div className='sub-div'>
                                     <a href={`/games/${game._id}`}> <img src={game.img} alt={game.name} /></a>
+                                    <div className='banner-div'>
                                     <h2>{game.name}</h2>
-                                    <div>
                                     <p>${game.price}</p>
-                                    {game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
+                                    {game.qty > 0 ? <p className="text-success">In Stock</p> : <p className="text-danger">Out of Stock</p> }
                                     </div>
                                 </div>
                             )
