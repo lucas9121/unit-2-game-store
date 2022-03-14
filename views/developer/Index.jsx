@@ -3,12 +3,12 @@ const Default = require('../Default')
 
 class Index extends React.Component {
     render() {
-        const {games} = this.props
+        const {games, username} = this.props
         return(
             <Default>
                 <a href="/dev"><h1>GameHub</h1></a>
                 <div className="login">
-                    <a className='account' href={`/dev/${user.username}`}><button>My account</button></a>
+                    <a className='account' href={`/dev/${username}`}><button>My account</button></a>
                     <a className='logout' href="/user/logout"><button>Logout</button></a>
                 </div>
                 <div>

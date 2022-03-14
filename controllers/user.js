@@ -62,7 +62,7 @@ router.post('/login', async (req, res) => {
                         // redirect to games page if sucessful
                         res.redirect('/games')
                     } else if(user.accountType === 'developer') {
-                        res.send('/dev')
+                        res.redirect('/dev')
                     }
                 } else {
                     //error if password doesn't match

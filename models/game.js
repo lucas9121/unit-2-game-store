@@ -8,6 +8,7 @@ const gameSchema = new Schema({
     img: String,
     price: Number,
     qty: Number,
+    dev: String,
     reviews: {
         type: Array,
         username: String,

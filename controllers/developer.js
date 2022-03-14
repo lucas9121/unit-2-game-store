@@ -17,9 +17,10 @@ const router =  express.Router()
 
 // Index
 router.get('/', (req, res) => {
+    username = req.session.username
     Game.find({dev: req.session.username})
         .then((games) => {
-            res.render('developer/Index', {games})
+            res.render('developer/Index', {games, username})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -29,7 +30,8 @@ router.get('/', (req, res) => {
 
 // New
 router.get('/new', (req, res) => {
-    res.render('developer/New')
+    username = req.session.username
+    res.render('developer/New', {username})
 })
 
 
@@ -48,7 +50,8 @@ router.delete('/:id', (req, res) => {
 // Update
 router.put('/:id', (req, res) => {
     Game.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    .then(() => {
+    .then((game) => {
+        game.dev = req.session.username
         res.redirect(`/dev/${req.params}`)
     })
     .catch((error) => {
@@ -71,9 +74,10 @@ router.post('/', (req, res) => {
 
 // Edit
 router.get('/:id/edit', (req, res) => {
+    username = req.session.username
     Game.findById(req.params.id)
         .then((game) => {
-            res.render('developer/Edit', {game})
+            res.render('developer/Edit', {game, username})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -83,9 +87,10 @@ router.get('/:id/edit', (req, res) => {
 
 // Show
 router.get('/:id', (req, res) => {
+    username = req.session.username
     Game.findById(req.params.id)
         .then((game) => {
-            res.render('developer/Show', {game})
+            res.render('developer/Show', {game, username})
         })
         .catch((error) => {
             res.status(400).json(error)
