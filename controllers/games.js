@@ -26,6 +26,11 @@ router.get('/seed', (req,res) => {
 
 router.use((req, res, next) => {
     if(req.session.loggedIn) {
+        User.findOne({username: req.session.username})
+            .then((user) => {
+                req.session.cart = user.cart.length
+                console.log(req.session.cart)
+            })
         next()
     } else {
         res.redirect('/user/login')
@@ -35,13 +40,13 @@ router.use((req, res, next) => {
 // Index
 router.get('/', (req, res) => {
     username = req.session.username
-        Game.find({})
-            .then((games) => {
-                res.render('games/Index', {games, username})
-            })
-            .catch((error) => {
-                res.status(400).json(error)
-            })
+    Game.find({})
+        .then((games) => {
+            res.render('games/Index', {games, username, length: req.session.cart})
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
 })
 
 
@@ -50,7 +55,7 @@ router.get('/:id/new', (req, res) => {
     username = req.session.username
     Game.findById(req.params.id)
         .then((game) => {
-            res.render('games/New', {game, username})
+            res.render('games/New', {game, username, length: req.session.cart})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -69,14 +74,19 @@ router.post('/:id', (req,res) => {
     username = req.session.username
     Game.findById(req.params.id)
         .then((foundGame) => {
+            console.log('Create Review!!!!!!!!!!!!!!!!!!!!!!!')
+            foundGame.person = username
+            console.log(foundGame)
+            console.log(foundGame.person)
+            // foundGame.review.person = username
+            // console.log(foundGame.review.person)
+            // console.log(foundGame.reviews.username)
             // spread operator - copies the array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
             foundGame.reviews = [...foundGame.reviews, req.body.reviews]
             //Saves the update
             foundGame.save()
-        })
-        .then(() => {
-            res.render('games/Show', {game, username})
+            res.render('games/Show', {game: foundGame, username, length: req.session.cart})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -92,7 +102,9 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
-            res.render('games/Show', {game, username})
+            console.log('Game Show Route!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log(game.reviews.person)
+            res.render('games/Show', {game, username, length: req.session.cart})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -105,34 +117,19 @@ router.post('/cart/:id', (req, res) => {
         .then((game) => {
             User.findOne({username: req.session.username})
                 .then((user) => {
-                    console.log('Game Cart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                    // console.log(`game is ${game}`)
-                    // console.log(`user is ${user}`)
                     let oldGame = user.cart.find(obj => obj.name === game.name)
-                    // console.log(`old game!!!!!!!!!!!!!!!!!!!!!!!!!!`)
-                    // console.log(oldGame)
-                    // console.log(`Currrent game!!!!!!!!!!!!!!!!!`)
-                    // console.log(user.cart.oldGame)
-                    // console.log(user.cart)
-                    // console.log(oldGame._id)
-                    // console.log(game._id)
                     if(!oldGame){
                         oldGame = game
                         oldGame.qty = 1
                         user.cart = [...user.cart, oldGame]
-                        // console.log(game)
                         user.save()
                     } else {
                         let gameIndex = user.cart.indexOf(oldGame)
                         oldGame.qty ++
-                        console.log(game.price)
-                        console.log(oldGame.qty)
-                        console.log(oldGame.price)
                         oldGame.price = game.price * oldGame.qty
                         user.cart.splice(gameIndex, 1, oldGame)
                         user.save()
                     }
-                    // console.log(user.cart)
                     res.redirect('/games')
                 })
                 .catch((error) => {

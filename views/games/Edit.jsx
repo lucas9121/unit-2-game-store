@@ -3,9 +3,9 @@ const Default = require('../Default.jsx')
 
 class Edit extends React.Component{
     render() {
-        const {game, username} = this.props
+        const {game, username, length} = this.props
         return(
-            <Default account="gamer" username={username}>
+            <Default account="gamer" username={username} length={length}>
                 <h2>Edit {game.name} Review form</h2>
                 <form action={`/games/${game._id}?_method=PUT`} method="put">
                     <fieldset>

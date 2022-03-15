@@ -4,9 +4,11 @@ const Default = require('../Default.jsx')
 class Index extends React.Component {
     render(){
         const props = this.props
-        const {games, username} = props
+        const {games, username, length} = props
+        console.log('Game Index!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log(length)
         return(
-            <Default account="gamer" username={username}>
+            <Default account="gamer" username={username} length={length}>
                 <div className='main-div'>
                     {
                         games.map((game) => {

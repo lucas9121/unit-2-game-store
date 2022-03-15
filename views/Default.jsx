@@ -2,6 +2,7 @@ const React = require('react')
 
 class Default extends React.Component {
     render() {
+        const {length} = this.props
         return(
             <html lang='en'>
                 <head>
@@ -31,7 +32,7 @@ class Default extends React.Component {
                                     </li>
                                     <li className="nav-item">
                                         {
-                                            this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${this.props.username}`}> Cart <span className="badge badge-info small">5</span> </a>:
+                                            this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${this.props.username}`}> Cart <span className="badge badge-info small">{length}</span> </a>:
                                             this.props.account === 'developer' ? <a className='nav-link text-light' href='/dev/new'> New Game </a>:
                                             <a className='nav-link text-light' href={`/user/login`}> Cart </a>
                                         }

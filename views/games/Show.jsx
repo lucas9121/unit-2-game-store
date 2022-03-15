@@ -3,16 +3,18 @@ const Default = require('../Default.jsx')
 
 class Show extends React.Component {
     render(){
-        const {game, username} = this.props
+        const {game, username, length} = this.props
+        console.log('Game Show Page!!!!!!!!!!!!!!!!!!!')
+        console.log(game)
         return(
-            <Default account="gamer" username={username}>
+            <Default account="gamer" username={username} length={length}>
                 <div className='show-div'>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
                     <div className='about-div form-group'>
                         <h3>About this Game:</h3>
                         <hr />
-                        <div className='bg-dark text-light border border-light rounded'>
+                        <div className='bg-secondary text-light border border-light rounded'>
                             <p className=''>{game.description}</p>
                         </div>
                     </div>
@@ -32,9 +34,9 @@ class Show extends React.Component {
                             {
                                 game.reviews.map((review) => {
                                     return(
-                                    <div>
-                                        <li key={game._id} >{review}</li>
-                                        <li>By: {game.username}</li>
+                                    <div className='form-group bg-secondary'>
+                                        <li key={game._id} className="">{review}</li>
+                                        <li className='small'>{game.person}</li>
                                     </div>
                                     )
                                 })

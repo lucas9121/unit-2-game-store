@@ -6,12 +6,17 @@
 
 .main-div{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 0.5em 0.2em;
     padding: 10px 0;
     background-color: rgb(169, 169, 169, 0.3)
 }
-
+/* .sub-div {
+    min-width: 300px;
+    max-width: 350px;
+    min-height: 300px;
+    max-height: 350px;
+} */
 
 .sub-div > a > img{
     width: 100%;

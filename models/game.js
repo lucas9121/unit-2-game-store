@@ -11,8 +11,8 @@ const gameSchema = new Schema({
     dev: String,
     reviews: {
         type: Array,
-        username: String,
     },
+    person: String,
     username: String,
 })
 

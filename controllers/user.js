@@ -97,7 +97,7 @@ router.get('/cart/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
             !user ? res.redirect('/') :
-            res.render('user/Cart', {user})
+            res.render('user/Cart', {user, length: req.session.cart})
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -105,7 +105,7 @@ router.get('/cart/:username', (req, res) => {
 })
 
 // Buy Cart Game
-router.post('/cart/:username/:gameName', (req, res) => {
+router.post('/cart/buy/:username/:gameName', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
             let cartGame = user.cart.find(obj => obj.name === req.params.gameName)
@@ -150,7 +150,7 @@ router.post('/cart/:username/:gameName', (req, res) => {
 router.get('/:username', (req, res) => {
     User.findOne({username: req.params.username})
         .then((user) => {
-            res.render('user/Info', {user})
+            res.render('user/Info', {user, length: req.session.cart})
         })
         .catch((error) => {
             res.json(error)

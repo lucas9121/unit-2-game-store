@@ -3,10 +3,10 @@ const Default = require('../Default')
 
 class Cart extends React.Component {
     render() {
-        const {user} = this.props
+        const {user, length} = this.props
         const cart = user.cart
         return(
-            <Default account="gamer" username={user.username}>
+            <Default account="gamer" username={user.username} length={length}>
                 <div>
                     {
                         cart.length === 0 ? <h2>Cart is Empty</h2> :
@@ -18,8 +18,8 @@ class Cart extends React.Component {
                                     <div>
                                         <p>${game.price} </p>
                                         <p>Qty: {game.qty}</p>{game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
-                                        <a href={`/user/cart/${user.username}/${game.name}`}>
-                                            <form action={`/user/cart/${user.username}/${game.name}`} method="POST">
+                                        <a href={`/user/cart/buy/${user.username}/${game.name}`}>
+                                            <form action={`/user/cart/buy/${user.username}/${game.name}`} method="POST">
                                                 <input type="submit" value='Buy' />
                                             </form>
                                         </a>
