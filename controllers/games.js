@@ -1,6 +1,6 @@
 const express = require("express")
 const Game = require('../models/game')
-const Cart = require('../models/cart')
+const Review = require('../models/review')
 const User = require('../models/user')
 
 const router = express.Router()
@@ -75,12 +75,6 @@ router.post('/:id', (req,res) => {
     Game.findById(req.params.id)
         .then((foundGame) => {
             console.log('Create Review!!!!!!!!!!!!!!!!!!!!!!!')
-            foundGame.person = username
-            console.log(foundGame)
-            console.log(foundGame.person)
-            // foundGame.review.person = username
-            // console.log(foundGame.review.person)
-            // console.log(foundGame.reviews.username)
             // spread operator - copies the array
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
             foundGame.reviews = [...foundGame.reviews, req.body.reviews]
@@ -93,6 +87,7 @@ router.post('/:id', (req,res) => {
         })
 })
 
+
 // Edit
 
 
@@ -102,8 +97,6 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
-            console.log('Game Show Route!!!!!!!!!!!!!!!!!!!!!!!!!')
-            console.log(game.reviews.person)
             res.render('games/Show', {game, username, length: req.session.cart})
         })
         .catch((error) => {

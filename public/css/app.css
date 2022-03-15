@@ -44,3 +44,26 @@
     margin: 1px;
 }
 
+.show-div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(169, 169, 169, 0.3)
+}
+
+.about-div {
+    margin: 10% 0;
+}
+
+/* .about-description {
+    border: dotted;
+}
+
+.purchase-div {
+    border: solid green
+}
+
+.review-div {
+    border: solid blue
+} */
+

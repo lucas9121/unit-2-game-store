@@ -7,15 +7,19 @@ class Show extends React.Component {
         return(
             <Default account="developer" username={username}>
                 <a className="nav-link btn btn-outline-primary" href={`/dev/${game._id}/edit`}>Edit</a>
-                <div>
+                <div className='show-div'>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
-                    <div>
+                    <div className='about-div form-group'>
                         <h3>About this Game:</h3>
-                        <p>{game.description}</p>
+                        <hr />
+                        <div className="about-description">
+                            <p>{game.description}</p>
+                        </div>
                     </div>
                     <div>
                         <p>${game.price}</p>
+                        <p>Quantity: {game.qty}</p>
                     </div>
                 </div>
             </Default>
