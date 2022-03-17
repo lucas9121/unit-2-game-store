@@ -18,10 +18,10 @@ class Default extends React.Component {
                 </head>
                 <body className='container-lg'>
                     <header>
-                        <nav className='navbar navbar-expand-sm navbar-light bg-dark'>
+                        <nav className='navigation navbar navbar-expand-sm navbar-light bg-dark'>
                             <a className='navbar-brand text-primary' href={this.props.account === 'gamer' ? "/games" : "/dev"}><h1>GAMEHUB</h1></a>
                             <div className="login navbar-collapse">
-                                <ul className='nav navbar-nav'>
+                                <ul className='ul nav navbar-nav'>
                                     <li className="nav-item">
                                         {
                                         this.props.account === 'developer' ? <a className="account nav-link text-light" href={`/dev/account/${this.props.username}`}>My account</a> :

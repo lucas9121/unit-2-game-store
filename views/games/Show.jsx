@@ -22,7 +22,7 @@ class Show extends React.Component {
                         <p>Quantity: {game.qty}</p>
                         <a href={`/games/cart/${game._id}`}>
                         <form action={`/games/cart/${game._id}`} method="POST">
-                            <input type="submit" value='Add to Cart' />
+                            {game.qty <= 0 ? <input type="submit" value='Add to Cart' disabled/>: <input type="submit" value='Add to Cart' />}
                         </form>
                         </a>
                     </div>

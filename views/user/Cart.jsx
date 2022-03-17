@@ -18,11 +18,11 @@ class Cart extends React.Component {
                                     <div>
                                         <p>${game.price} </p>
                                         <p>Qty: {game.qty}</p>{game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
-                                        <a href={`/user/cart/buy/${user.username}/${game.name}`}>
-                                            <form action={`/user/cart/buy/${user.username}/${game.name}`} method="POST">
+                                        <form action={`/user/cart/buy/${user.username}/${game.name}`} method="POST">
+                                            <a href={`/user/cart/buy/${user.username}/${game.name}`}>
                                                 <input type="submit" value='Buy' />
-                                            </form>
-                                        </a>
+                                            </a>
+                                        </form>
                                         <a href={`/user/cart/${user.username}/${game.name}`}>
                                             <form action={`/user/cart/${user.username}/${game.name}`} method="POST">
                                                 <input type="submit" value='Remove' />

@@ -12,9 +12,13 @@ class Index extends React.Component {
                 <div className='main-div'>
                     {
                         games.map((game) => {
+                            const imageStyle = {
+                                backgroundImage: `url(${game.img})`,
+                            }
+                            // <img src={game.img} alt={game.name} />
                             return(
                                 <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'} >
-                                    <a href={`/games/${game._id}`}> <img src={game.img} alt={game.name} /></a>
+                                    <a style={imageStyle} href={`/games/${game._id}`}> </a>
                                     <div className='banner-div bg-secondary'>
                                         <h2>{game.name}</h2>
                                         <div>
