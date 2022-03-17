@@ -7,12 +7,12 @@ class New extends React.Component {
         return(
             <Default account="gamer" username={username} length={length}>
                 <h2>{game.name} Review form</h2>
-                <form action={`/games/${game._id}`} method="post">
+                <form action={`/games/${game._id}`} method="POST">
                     <fieldset>
-                        <label htmlFor="reviews">
+                        <label htmlFor="description">
                             Write Review
                         </label>
-                        <textarea name="reviews" id="" maxLength={'300'} cols="40" rows="3"></textarea>
+                        <textarea name="description" id="" maxLength={'300'} cols="40" rows="3"></textarea>
                     </fieldset>
                     <input type="submit" value="Submit" />
                 </form>

@@ -9,10 +9,7 @@ const gameSchema = new Schema({
     price: Number,
     qty: Number,
     dev: String,
-    reviews: {
-        type: Array,
-    },
-    person: String,
+    reviews: Array,
     username: String,
 })
 

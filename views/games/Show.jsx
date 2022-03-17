@@ -4,6 +4,7 @@ const Default = require('../Default.jsx')
 class Show extends React.Component {
     render(){
         const {game, username, length, review} = this.props
+        const reviews = game.reviews
         return(
             <Default account="gamer" username={username} length={length}>
                 <div className='show-div'>
@@ -30,11 +31,11 @@ class Show extends React.Component {
                         <h3>Customer Reviews</h3>
                         <hr />
                             {
-                                game.reviews.map((review) => {
+                                reviews.map((review) => {
                                     return(
                                     <div className='form-group bg-secondary'>
-                                        <p key={game._id} className="">{review}</p>
-                                        <p className='small'>{game.person}</p>
+                                        <p key={game._id} className="">{review.description}</p>
+                                        <p className='small'>By:{review.name}</p>
                                     </div>
                                     )
                                 })

@@ -29,6 +29,7 @@ router.use((req, res, next) => {
         User.findOne({username: req.session.username})
             .then((user) => {
                 req.session.cart = user.cart.length
+                console.log('game controller middleware!!!!!!!!!!!!')
                 console.log(req.session.cart)
             })
         next()
@@ -73,14 +74,20 @@ router.get('/:id/new', (req, res) => {
 router.post('/:id', (req,res) => {
     username = req.session.username
     Game.findById(req.params.id)
-        .then((foundGame) => {
-            console.log('Create Review!!!!!!!!!!!!!!!!!!!!!!!')
-            // spread operator - copies the array
-            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-            foundGame.reviews = [...foundGame.reviews, req.body.reviews]
-            //Saves the update
-            foundGame.save()
-            res.render('games/Show', {game: foundGame, username, length: req.session.cart})
+        .then((game) => {
+            Review.create(req.body)
+                .then((review) => {
+                    review.name = req.session.username
+                     // spread operator - copies the array
+                     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+                    game.reviews = [...game.reviews, review]
+                    //Saves the update
+                    game.save()
+                    res.redirect(`/games/${req.params.id}`)
+                })
+                .catch((error) => {
+                    res.status(400).json(error)
+                })
         })
         .catch((error) => {
             res.status(400).json(error)
@@ -97,6 +104,7 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
+            // let reviews = game.reviews
             res.render('games/Show', {game, username, length: req.session.cart})
         })
         .catch((error) => {
