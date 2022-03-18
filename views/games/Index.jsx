@@ -5,8 +5,6 @@ class Index extends React.Component {
     render(){
         const props = this.props
         const {games, username, length} = props
-        console.log('Game Index!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log(length)
         return(
             <Default account="gamer" username={username} length={length}>
                 <div className='main-div'>
@@ -15,15 +13,14 @@ class Index extends React.Component {
                             const imageStyle = {
                                 backgroundImage: `url(${game.img})`,
                             }
-                            // <img src={game.img} alt={game.name} />
                             return(
                                 <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'} >
                                     <a style={imageStyle} href={`/games/${game._id}`}> </a>
                                     <div className='banner-div bg-secondary'>
                                         <h2>{game.name}</h2>
                                         <div>
-                                            <p>${game.price}</p>
-                                            {game.qty > 0 ? <p className="text-success stock">In Stock</p> : <p className="text-danger stock">Out of Stock</p> }
+                                            {game.price <= 0 ? <p>Free</p> : <p>${game.price}</p>}
+                                            {game.qty > 0 ? <p className="text-success stock">Available</p> : <p className="text-danger stock">Sold Out</p> }
                                         </div>
                                     </div>
                                 </div>

@@ -14,7 +14,7 @@ class New extends React.Component {
                         </label>
                         <textarea name="description" id="" maxLength={'300'} cols="40" rows="3"></textarea>
                     </fieldset>
-                    <input type="submit" value="Submit" />
+                    <input className='btn btn-outline-success' type="submit" value="Submit" />
                 </form>
             </Default>
         )

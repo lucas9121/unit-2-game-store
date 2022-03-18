@@ -91,7 +91,7 @@
     margin: 10% 0;
 }
 
-/* .about-description {
+.about-description {
     border: dotted;
 }
 
@@ -101,5 +101,9 @@
 
 .review-div {
     border: solid blue
-} */
+}
+
+.review-div > div {
+    border: none;
+}
 
