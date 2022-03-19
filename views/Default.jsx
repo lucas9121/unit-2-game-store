@@ -19,7 +19,9 @@ class Default extends React.Component {
                 <body className='container-lg'>
                     <header>
                         <nav className='navigation navbar navbar-expand-sm navbar-light bg-dark'>
-                            <a className='navbar-brand text-primary' href={this.props.account === 'gamer' ? "/games" : "/dev"}><h1>GAMEHUB</h1></a>
+                            <a className='navbar-brand text-primary' href={this.props.account === 'gamer' ? "/games" : 
+                            this.props.account === 'developer' ? "/dev" : 
+                            "/"}><h1>GAMEHUB</h1></a>
                             <div className="login navbar-collapse">
                                 <ul className='ul nav navbar-nav'>
                                     <li className="nav-item">

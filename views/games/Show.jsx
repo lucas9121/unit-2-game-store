@@ -10,22 +10,24 @@ class Show extends React.Component {
                 <div className='show-div'>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
+                    <div className='purchase-div form-group jumbotron-sm'>
+                        <h2>Buy {game.name}</h2>
+                        <p>Quantity: {game.qty}</p>
+                        <div>
+                            <p>${game.price}</p>
+                            <a href={`/games/cart/${game._id}`}>
+                            <form action={`/games/cart/${game._id}`} method="POST">
+                                {game.qty <= 0 ? <input className='btn btn-outline-success' type="submit" value='Add to Cart' disabled/>: <input type="submit" value='Add to Cart' />}
+                            </form>
+                            </a>
+                        </div>
+                    </div>
                     <div className='about-div form-group'>
                         <h3>About this Game:</h3>
                         <hr />
                         <div className='about-description bg-secondary text-light border border-light rounded'>
                             <p className=''>{game.description}</p>
                         </div>
-                    </div>
-                    <div className='purchase-div form-group jumbotron-sm'>
-                        <p>Buy {game.name}</p>
-                        <p>${game.price}</p>
-                        <p>Quantity: {game.qty}</p>
-                        <a href={`/games/cart/${game._id}`}>
-                        <form action={`/games/cart/${game._id}`} method="POST">
-                            {game.qty <= 0 ? <input className='btn btn-outline-success' type="submit" value='Add to Cart' disabled/>: <input type="submit" value='Add to Cart' />}
-                        </form>
-                        </a>
                     </div>
                     <div className='review-div form-group'>
                         <h3>Customer Reviews</h3>
