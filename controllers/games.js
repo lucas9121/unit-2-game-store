@@ -28,8 +28,14 @@ router.use((req, res, next) => {
     if(req.session.loggedIn) {
         User.findOne({username: req.session.username})
             .then((user) => {
-                req.session.cart = user.cart.length
+                let totalGames = 0
+                console.log(totalGames)
+                for(let i = 0; i < user.cart.length; i++){
+                    totalGames += user.cart[i].qty
+                }
+                req.session.cart = totalGames
                 console.log('game controller middleware!!!!!!!!!!!!')
+                console.log(totalGames)
                 console.log(req.session.cart)
             })
         next()

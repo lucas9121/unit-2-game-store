@@ -112,12 +112,15 @@ router.post('/cart/buy/:username/:gameName', (req, res) => {
             let gameIndex = user.cart.indexOf(cartGame)
             Game.findOne({name: cartGame.name})
                 .then((foundGame) => {
-                    if(foundGame.qty > 0 && foundGame.qty >= cartGame.qty){
+                    // Input in cart page is buyNumber
+                    if(foundGame.qty > 0 && foundGame.qty >= req.body.buyNumber){
                         foundGame.qty -= req.body.buyNumber
                         user.cart.splice(gameIndex, 1)
                         user.save()
                         foundGame.save()
                         res.redirect('/games')
+                    } else {
+                        res.redirect(`/user/cart/${req.params.username}`)
                     }
                 })
         })
