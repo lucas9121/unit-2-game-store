@@ -18,7 +18,7 @@ class Cart extends React.Component {
                                     <div>
                                         <p>${game.price} </p>
                                         <form action={`/user/cart/buy/${user.username}/${game.name}`} method="POST">
-                                        Qty: <input name={game.qty} type="number" defaultValue={game.qty}/>
+                                        Qty: <input name="buyNumber" type="number" defaultValue={game.qty}/>
                                         {game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock">Out of Stock</p> }
                                             <a href={`/user/cart/buy/${user.username}/${game.name}`}>
                                                 <input type="submit" value='Buy' />

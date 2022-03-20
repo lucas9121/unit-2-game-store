@@ -113,11 +113,10 @@ router.post('/cart/buy/:username/:gameName', (req, res) => {
             Game.findOne({name: cartGame.name})
                 .then((foundGame) => {
                     if(foundGame.qty > 0 && foundGame.qty >= cartGame.qty){
-                        foundGame.qty -= cartGame.qty
+                        foundGame.qty -= req.body.buyNumber
                         user.cart.splice(gameIndex, 1)
                         user.save()
                         foundGame.save()
-                        console.log(foundGame)
                         res.redirect('/games')
                     }
                 })

@@ -3,7 +3,7 @@
 body {
     background-color: #1b2838;
 }
-button {
+.btn {
     padding: 0 !important;
 }
 .navigation {
@@ -92,6 +92,7 @@ button {
     flex-direction: column;
     background-color: rgb(169, 169, 169, 0.3);
     border-radius: 10px;
+    color: rgba(240, 248, 255);
 }
 .show-div > h2 {
     font-size: 4rem;
@@ -101,18 +102,26 @@ button {
 }
 
 .purchase-div {
-    border: solid green;
+    border-radius: 4px;
     display: flex;
     margin-top: 1%;
+    background: linear-gradient(rgba(0, 123, 255, 0.37) ,rgba(0, 0, 0) 85%);
+}
+.purchase-div > h4 {
+    display: flex;
+    align-items: center;
 }
 .purchase-div > p {
     border: none;
     margin: 0 -23% 0 23%;
 }
 .purchase-div > div {
-    border: none;
+    border: solid black;
+    border-radius: 4px;
     display: flex;
     margin: 27px 0 -8px -18px;
+    background-color: black;
+    padding: 1px;
 }
 .purchase-div > div > p {
     border: none;
@@ -124,6 +133,7 @@ button {
 }
 .about-description {
     border: dotted;
+    background: linear-gradient(rgba(0, 123, 255, 0.37) ,rgba(0, 0, 0));
 }
 
 

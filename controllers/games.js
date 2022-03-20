@@ -104,7 +104,6 @@ router.get('/:id', (req,res) => {
     username = req.session.username
     Game.findById(id)
         .then((game) =>{
-            // let reviews = game.reviews
             res.render('games/Show', {game, username, length: req.session.cart})
         })
         .catch((error) => {

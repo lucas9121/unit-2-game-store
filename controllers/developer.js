@@ -70,7 +70,6 @@ router.post('/', (req, res) => {
             game.dev = req.session.username
             game.qty = 10
             game.save()
-            console.log(game)
             res.render('developer/Show', {game})
         })
         .catch((error) => {
@@ -109,7 +108,6 @@ router.get('/:id', (req, res) => {
 router.get('/account/:username', (req, res) => {
     User.findOne({username: req.session.username})
         .then((user) => {
-            console.log(user)
             res.render('developer/Info', {user})
         })
         .catch((error) => {
