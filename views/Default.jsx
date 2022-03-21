@@ -16,7 +16,7 @@ class Default extends React.Component {
                     <link rel="stylesheet" href="/css/app.css" />
                     <title>GameHub</title>
                 </head>
-                <body className='container-lg'>
+                <body className='container-md'>
                     <header>
                         <nav className='navigation navbar navbar-expand-sm navbar-light bg-dark'>
                             <a className='navbar-brand text-primary' href={this.props.account === 'gamer' ? "/games" : 
