@@ -13,13 +13,13 @@ class Index extends React.Component {
                                 backgroundImage: `url(${game.img})`,
                             }
                             return(
-                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'}>
-                                    <a style={imageStyle} href={`/dev/${game._id}`}></a>
-                                    <div className='banner-div bg-secondary'>
+                                <div className={game.qty > 0 ? 'sub-div border border-success' : 'sub-div border border-danger'} >
+                                    <a style={imageStyle} href={`/games/${game._id}`}> </a>
+                                    <div className='banner-div'>
                                         <h2>{game.name}</h2>
                                         <div>
-                                            <p>${game.price}</p>
-                                            {game.qty > 0 ? <p className="text-success stock">Available({game.qty})</p> : <p className="text-danger stock">Sold Out. Add aditional inventory.</p> }
+                                            {game.price <= 0 ? <p>Free</p> : <p>${game.price}</p>}
+                                            {game.qty > 0 ? <p className="text-success stock">Available</p> : <p className="text-danger stock">Sold Out</p> }
                                         </div>
                                     </div>
                                 </div>
