@@ -15,11 +15,18 @@ class Show extends React.Component {
                         <p>Quantity: {game.qty}</p>
                         <div>
                             <p>${game.price}</p>
-                            <a href={`/games/cart/${game._id}`}>
-                            <form action={`/games/cart/${game._id}`} method="POST">
-                                {game.qty <= 0 ? <input className='btn btn-outline-info disabled' type="submit" value='Add to Cart' disabled/> : <input className='btn btn-info' type="submit" value='Add to Cart' /> }
-                            </form>
-                            </a>
+                            {game.qty > 0 ?
+                                <a href={`/games/cart/${game._id}`}>
+                                <form action={`/games/cart/${game._id}`} method="POST">
+                                    <input className='btn btn-info' type="submit" value='Add to Cart' />
+                                </form>
+                                </a> : 
+                                <a href={`/games/cart/${game._id}`} disabled>
+                                <form action={`/games/cart/${game._id}`} method="POST" disabled>
+                                    <input className='btn btn-outline-info disabled' type="submit" value='Add to Cart' disabled/>
+                                </form>
+                                </a>
+                            }
                         </div>
                     </div>
                     <div className='about-div form-group'>
