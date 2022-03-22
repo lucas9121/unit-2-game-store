@@ -6,11 +6,18 @@ class Info extends React.Component {
         const {user} = this.props
         return(
             <Default account="developer" username={user.username}>
-                <div>
-                    <p>Username: {user.username}</p>
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email} </p>
-                    <p>account: {user.accountType}</p>
+                <div className='account-div'>
+                    <h2>My Account</h2>
+                    <div className="account-info">
+                        <h4>Username</h4>
+                        <p>{user.username}</p>
+                        <h4>Name</h4>
+                        <p>{user.name}</p>
+                        <h4>Email</h4>
+                        <p>{user.email} </p>
+                        <h4>Account Type</h4>
+                        <p style={{textTransform: 'capitalize'}}>{user.accountType}</p>
+                    </div>
                 </div>
             </Default>
         )

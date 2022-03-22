@@ -96,9 +96,9 @@ body {
 
 /* /////////// Show /////////////// */
 .show-div{
-    align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     /* background-color: rgb(169, 169, 169, 0.3); */
     border-radius: 10px;
     color: rgba(240, 248, 255);
@@ -175,5 +175,38 @@ hr {
     border-bottom-style: dashed;
     width: 17%;
     text-align: center;
+    font-style: italic;
 }
 
+
+/* /////////// Info /////////////// */
+.account-div {
+    border: solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 550px;
+    min-height: 550px;
+    color: white;
+    font-family: serif;
+}
+.account-div > h2 {
+    font-size: xxx-large;
+    margin-bottom: 20px;
+}
+.account-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: -webkit-fill-available;
+}
+.account-info > h4 {
+    margin: 0 0 0 10px;
+    text-decoration: underline;
+}
+.account-info > p {
+    margin: 0 0 50px 10px;
+    font-style: italic;
+    color: var(--info);
+    font-size: large;
+}
