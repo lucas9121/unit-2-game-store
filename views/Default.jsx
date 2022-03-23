@@ -28,7 +28,21 @@ class Default extends React.Component {
                                         {
                                         this.props.account === 'developer' ? <a className="account nav-link text-light" href={`/dev/account/${this.props.username}`}>My account</a> :
                                         this.props.account === 'gamer' ? <a className='account nav-link text-light' href={`/user/${this.props.username}`}>My account</a> :
-                                        <a className='nav-link text-light' href="/">Sign in</a>
+                                        // <a className='nav-link text-light' href={`/user/login`}>Log in</a>
+                                        <form action="/user/login" method="post">
+                                            <fieldset className='login-field needs-validation'>
+                                                {/* <legend>User Login</legend> */}
+                                                <div className="login-username">
+                                                    <label htmlFor='username'>USERNAME: </label>
+                                                    <input type="text" name="username" required />
+                                                </div>
+                                                <div className="login-password">
+                                                    <label htmlFor='password'>PASSWORD: </label>
+                                                    <input type="password" name="password" required />
+                                                    <input className='btn btn-outline-primary btn-sm' type="submit" value="Login" />
+                                                </div>
+                                            </fieldset>
+                                        </form>
                                         }
 
                                     </li>
@@ -36,7 +50,7 @@ class Default extends React.Component {
                                         {
                                             this.props.account === 'gamer' ? <a className='nav-link text-light' href={`/user/cart/${this.props.username}`}> Cart <span className="badge badge-info small">{length}</span> </a>:
                                             this.props.account === 'developer' ? <a className='nav-link text-light' href='/dev/new'> New Game </a>:
-                                            <a className='nav-link text-light' href={`/user/login`}> Cart </a>
+                                            <a className='nav-link text-light' href={`/user/login`} disabled> Cart </a>
                                         }
                                     </li>
                                     <li className="nav-item">

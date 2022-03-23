@@ -31,7 +31,14 @@ body {
 .ul {
     font-family: serif;
 }
-
+.login-field{
+    display: flex;
+    font-size: x-small;
+    color: var(--light);
+    justify-content: space-between;
+    width: 380px;
+    margin-top: 10px;
+}
 
 /* /////////// Index /////////////// */
 .main-div{

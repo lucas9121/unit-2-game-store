@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 const gameController = require('./controllers/games')
 const userRouter = require('./controllers/user')
 const devController = require('./controllers/developer')
+const homeController = require('./controllers/home')
 const path = require('path')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
@@ -45,9 +46,10 @@ app.use(
 app.use('/games', gameController)
 app.use('/user', userRouter)
 app.use('/dev', devController)
+app.use('/home', homeController)
 
 app.get('/', (req, res) => {
-    res.render('Home')
+    res.redirect('/home')
 })
 
 
