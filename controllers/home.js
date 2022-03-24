@@ -16,4 +16,15 @@ router.get('/', (req, res) => {
         })
 })
 
+// Show
+router.get('/:id', (req, res) => {
+    Game.findById(req.params.id)
+        .then((game) => {
+            res.render('Sub', {game})
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
 module.exports = router

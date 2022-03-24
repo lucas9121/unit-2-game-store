@@ -41,7 +41,7 @@ router.post('/signup', async (req, res) => {
 
 // The login Routes (Get => form, post => submit form)
 router.get('/login', (req, res) => {
-    res.render('Home.jsx')
+    res.redirect('/home')
 })
 
 router.post('/login', async (req, res) => {
