@@ -216,3 +216,17 @@ hr {
     color: var(--info);
     font-size: large;
 }
+
+
+/* /////////// Sign up /////////////// */
+.sign-up{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light);
+}
+.account-type{
+    width: 22vw;
+    display: flex;
+    justify-content: space-evenly;
+}
