@@ -29,14 +29,11 @@ router.use((req, res, next) => {
         User.findOne({username: req.session.username})
             .then((user) => {
                 let totalGames = 0
-                console.log(totalGames)
                 for(let i = 0; i < user.cart.length; i++){
+                    // find the quantity of each individual games vs the quantity of the number of games
                     totalGames += user.cart[i].qty
                 }
                 req.session.cart = totalGames
-                console.log('game controller middleware!!!!!!!!!!!!')
-                console.log(totalGames)
-                console.log(req.session.cart)
             })
         next()
     } else {
