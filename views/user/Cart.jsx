@@ -16,7 +16,8 @@ class Cart extends React.Component {
                                     <img src={game.img} alt={game.name} />
                                     <h2>{game.name}</h2>
                                     <div className='cart-choice'>
-                                        <p>${game.price} </p>
+                                        {game.price <= 0 ? <p>Free</p> : <p>${game.price/game.qty} </p>}
+                                        {game.price <= 0 ? <p></p> : <p>X</p>}
                                         <form action={`/user/cart/buy/${user.username}/${game.name}`} method="POST" className='buy-form'>
                                         Qty: <input name="buyNumber" className='qty-input' type="number" defaultValue={game.qty}/>
                                         {game.qty > 0 ? <p className="stock">In Stock</p> : <p className="stock" style={{color: 'red'}}>Out of Stock</p> }

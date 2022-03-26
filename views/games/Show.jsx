@@ -21,7 +21,7 @@ class Show extends React.Component {
                                     <input className='btn btn-info' type="submit" value='Add to Cart' />
                                 </form>
                                 </a> : 
-                                <a href={`/games/cart/${game._id}`} disabled>
+                                <a href='' disabled>
                                 <form action={`/games/cart/${game._id}`} method="POST" disabled>
                                     <input className='btn btn-outline-info disabled' type="submit" value='Add to Cart' disabled/>
                                 </form>

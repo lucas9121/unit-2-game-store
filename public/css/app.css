@@ -240,7 +240,7 @@ hr {
 .cart-div{
     color: var(--light);
     display: grid;
-    grid-template-columns: 30vw 30vw;
+    grid-template-columns: 25vw 25vw;
     grid-gap: 1vw 2vw;
     justify-content: center;
     padding: 1vw;
@@ -251,7 +251,8 @@ hr {
 
 }
 .cart-info > img {
-    width: 29.8vw;
+    /* width: -webkit-fill-available; */
+    width: 24.8vw;
     height: 70vh;
 }
 .cart-choice{
@@ -265,9 +266,9 @@ hr {
     width: 14vw;
 }
 .stock {
-    font-size: x-small;
+    font-size: small;
 }
 .qty-input{
-    width: 5vw;
+    width: 3vw;
     height: 4vh;
 }
