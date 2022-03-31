@@ -11,7 +11,9 @@ class Show extends React.Component {
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
                     <div className='purchase-div form-group'>
-                        <h4>Buy {game.name}</h4>
+                        <div className="purchase-title">
+                            <h4>Buy {game.name}</h4>
+                        </div>
                         <p>Quantity: {game.qty}</p>
                         <div>
                             <p>${game.price}</p>
@@ -21,9 +23,9 @@ class Show extends React.Component {
                                 </form>
                                 </a>
                                 <br />
-                            <small>Log in first</small>
                         </div>
                     </div>
+                    <p>Log in first</p>
                     <div className='about-div form-group'>
                         <h3>About this Game:</h3>
                         <hr />
