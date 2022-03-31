@@ -8,9 +8,10 @@ class New extends React.Component {
         return(
             <Default account="gamer" username={username} length={length}>
                <div className='show-div'>
+               <a href={`/games/${game._id}`}><button className='cancel btn btn-outline-danger'>Back</button></a>
                     <h2>{game.name}</h2>
                     <img src={game.img} alt={game.name} />
-                    <div className='purchase-div form-group'>
+                    {/* <div className='purchase-div form-group'>
                         <h4>Buy {game.name}</h4>
                         <p>Quantity: {game.qty}</p>
                         <div>
@@ -35,19 +36,20 @@ class New extends React.Component {
                         <div className='about-description rounded'>
                             <p className=''>{game.description}</p>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='review-div form-group'>
                         <h3>Customer Reviews</h3>
                         <hr />
                         <form action={`/games/${game._id}`} method="POST">
-                            <fieldset>
+                            <fieldset className='new-review'>
                                 <label htmlFor="description">
                                     Write Review
                                 </label>
                                 <textarea name="description" id="" maxLength={'300'} cols="40" rows="3"></textarea>
+                                <input className='submit btn btn-outline-success' type="submit" value="Submit" />
                             </fieldset>
-                            <input className='btn btn-outline-success' type="submit" value="Submit" />
                         </form>
+                        <a href={`/games/${game._id}`}><button className='cancel btn btn-outline-danger'>Cancel</button></a>
                         <div className="review-comments">
                             {
                                 reviews.map((review) => {
